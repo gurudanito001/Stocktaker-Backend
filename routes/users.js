@@ -50,7 +50,7 @@ router.route('/add').post((req, res) => {
 
     newUser.save()
         .then(() =>{
-            res.json('User added!')
+            res.json(newUser)
         })
         .catch(err => res.status(400).json('Error: ' +err));
 })
@@ -96,7 +96,7 @@ router.route('/update/:id').post((req, res) => {
         user.viewHistory = req.body.viewHistory;
 
         user.save()
-            .then(() => res.json('User info Updated!'))
+            .then(() => res.json(user))
             .catch(err => res.status(400).json('Error: ' +err));
     })
     .catch(err => res.status(400).json('Error: ' +err));

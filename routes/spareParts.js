@@ -7,7 +7,7 @@ router.route('/').get((req, res) =>{
         .catch(err => res.status(400).json('Error: ' + err))
 });
 
-router.route('/categories').get((req, res) =>{
+/* router.route('/categories').get((req, res) =>{
     SparePart.find()
         .then(spareParts =>{
             let category = [];
@@ -16,11 +16,10 @@ router.route('/categories').get((req, res) =>{
             })
             res.json([...new Set(category)]);
         })
-        //.then(spareParts =>res.json(spareParts))
 
 
         .catch(err => res.status(400).json('Error: ' + err))
-});
+}); */
 
 router.route('/add').post((req, res) => {
     const partNumber = req.body.partNumber;
@@ -48,7 +47,7 @@ router.route('/add').post((req, res) => {
     })
 
     newSparePart.save()
-        .then(() => res.json('Spare Part added!'))
+        .then(() => res.json(newSparePart))
         .catch(err => res.status(400).json('Error: ' +err));
 })
 
@@ -79,7 +78,7 @@ router.route('/update/:id').post((req, res) => {
         sparepart.description = req.body.description;
 
         sparepart.save()
-            .then(() => res.json('Spare Part Updated!'))
+            .then(() => res.json(sparepart))
             .catch(err => res.status(400).json('Error: ' +err));
     })
     .catch(err => res.status(400).json('Error: ' +err));
